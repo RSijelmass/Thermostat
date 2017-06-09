@@ -1,7 +1,5 @@
 $('#current-city').change(function() {
   var city = $('#current-city').val();
-  // debugger
-  console.log(city);
   $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a012ce56b3fea36ffd408256d4eeb21a', function(data) {
     $('#weather-status-main').text(data.weather[0].main);
     $('#weather-status-extra').text(data.weather[0].description);
@@ -30,18 +28,21 @@ $(document).ready(function() { // standard input
     $('#power_saving_status').text(thermostat.psmGetter());
   })
 
+	$('#save').click(function() {
+		console.log($('#current-city').val());
+		$.post('http://localhost:9292/temperature/' + thermostat.temperature.toString() + '/' + $('#current-city').val());
+	});
+
 	function loadTemperature() {
 		$.get('http://localhost:9292/temperature', function(data) {
-			console.log(data);
-			console.log(data.temperature);
-			$('#temperature').text(data.temperature);
+			thermostat.setTemperature(parseInt(data.temperature));
+			$('#temperature').text(thermostat.temperature);
 		});	
 	};
 
   function updateTemperature() {
   	$('#temperature').text(thermostat.temperature);
-		$.post('http://localhost:9292/temperature/' + thermostat.temperature.toString());
-  	$('#temperature').attr('class', thermostat.energyUsage());
+	  $('#temperature').attr('class', thermostat.energyUsage());
 	};
 
 })

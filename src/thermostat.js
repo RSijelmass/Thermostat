@@ -6,6 +6,10 @@ function Thermostat() {
   this.MAX_LIMIT_PSM_OFF = 32;
 }
 
+Thermostat.prototype.setTemperature = function(value) {
+	this.temperature = value;
+};
+
 Thermostat.prototype.getCurrentTemperature = function () {
   return this.temperature
 };
