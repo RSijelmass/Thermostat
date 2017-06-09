@@ -32,7 +32,7 @@ $(document).ready(function() { // standard input
 
 	function loadTemperature() {
 		$.get('http://localhost:9292/temperature', function(data) {
-			debugger
+			
 			console.log(data);
 			console.log(data.temperature);
 			$('#temperature').text(data.temperature);

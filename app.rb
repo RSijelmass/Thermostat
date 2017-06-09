@@ -13,7 +13,7 @@ class WeatherApp < Sinatra::Base
 	end
 
 	post '/temperature/:temperature' do
-		p "post: #{params[:temperature]}"
+		p "post message: #{params[:temperature]}"
 		data = File.open("weatherdata.json", "w+")
 		data.write( {temperature: params[:temperature] }.to_json)
 		data.close
