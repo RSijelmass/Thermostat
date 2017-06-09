@@ -2,39 +2,39 @@
 <html>
  <div>
   <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style_rita.css">
     <meta charset="utf-8">
-    <title>Rita, Ian and Jenny's Beautiful Thermostat</title>
-    <style>
-    </style>
-    <a href='https://postimg.org/image/gioxn64ph/' target='_blank'><img src='https://s10.postimg.org/gioxn64ph/IMG_0494.jpg' border='0' alt='postimage'/></a>
-    <h1>Rita, Ian and Jenny's Beautiful Thermostat</h1>
+    <title>Thermostat</title>
+		<!--<h1>The Thermostat</h1>-->
   </head>
+	
   <body>
-    <!-- <embed src="whatsgoingon.mp3" width="0px" height="0px"> -->
-    <section>
+		<div id='left'>
 			<h2 id="temperature"></h2>
       <p>
         <button id="temperature-up">+</button>
         <button id="temperature-down">-</button>
-        <button id="temperature-reset">reset</button>
+				<button id="temperature-reset">reset</button></br>
         Power saving mode is <span id="power_saving_status">on</span>
         <button id="power-saving">PSM</button>
       </p>
-    </section>
-    <section>
+
       <select id="current-city">
         <option value="amsterdam">Amsterdam</option>
         <option value="london">London</option>
         <option value="newyork">New York</option>
         <option value="paris">Paris</option>
       </select>
-    </section>
+				<h3 id='weather-status-main'></h3>
+				<h3 id='weather-status-extra'></h3>
+				<h3 id='weather-status-temp'></h3>
+		</div>
+			<div id='right'>
+				<h1 class='degrees'>degrees</h1>
+	<!--<img id='amsterdam' src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Flag_of_Amsterdam.svg/220px-Flag_of_Amsterdam.svg.png'> -->
+			</div>
+		
 		<section>
-      <div id=status>
-			<h3 id='weather-status-main'></h3>
-			<h3 id='weather-status-extra'></h3>
-			<h3 id='weather-status-temp'></h3>
     </div>
 		</section>
     <script src="src/thermostat.js"></script>

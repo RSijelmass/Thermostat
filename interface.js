@@ -11,7 +11,7 @@ $('#current-city').change(function() {
 
 $(document).ready(function() { // standard input
   var thermostat = new Thermostat(); // new instance
-  updateTemperature();
+	loadTemperature();
 
   $('#temperature-up').on('click', function() { // event listener
     thermostat.increaseTemperature(); // updates the model
@@ -29,9 +29,20 @@ $(document).ready(function() { // standard input
     thermostat.togglePsm(); // updates the model
     $('#power_saving_status').text(thermostat.psmGetter());
   })
+
+	function loadTemperature() {
+		$.get('http://localhost:9292/temperature', function(data) {
+			debugger
+			console.log(data);
+			console.log(data.temperature);
+			$('#temperature').text(data.temperature);
+		});	
+	};
+
   function updateTemperature() {
-  $('#temperature').text(thermostat.temperature + "ºC");
-  $('#temperature').attr('class', thermostat.energyUsage());
-}
+  	$('#temperature').text(thermostat.temperature);
+		$.post('http://localhost:9292/temperature/' + thermostat.temperature.toString());
+  	$('#temperature').attr('class', thermostat.energyUsage());
+	};
 
 })
