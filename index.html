@@ -19,12 +19,11 @@
         <button id="power-saving">PSM</button>
       </p>
 
-      <select id="current-city">
-        <option value="amsterdam">Amsterdam</option>
-        <option value="london">London</option>
-        <option value="newyork">New York</option>
-        <option value="paris">Paris</option>
-      </select>
+      <form id="city-form">
+				Enter Your City: <input id='current-city' type='text' name='city'>
+				<input id='select-city' type='submit' value='Submit'>
+      </form>
+				<h3 id='show-city'></h3>
 				<h3 id='weather-status-main'></h3>
 				<h3 id='weather-status-extra'></h3>
 				<h3 id='weather-status-temp'></h3>

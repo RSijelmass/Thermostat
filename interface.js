@@ -1,15 +1,22 @@
-$('#current-city').change(function() {
+$('#city-form').submit(function(event) {
+	event.preventDefault();
   var city = $('#current-city').val();
-  $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a012ce56b3fea36ffd408256d4eeb21a', function(data) {
-    $('#weather-status-main').text(data.weather[0].main);
-    $('#weather-status-extra').text(data.weather[0].description);
-    $('#weather-status-temp').text(Math.round(data.main.temp - 273) + "ºC");
-  });
-});
+	console.log("city: " + city)
+	updateWeather(city);
+	});
+
+function updateWeather(city) {
+  	$.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=a012ce56b3fea36ffd408256d4eeb21a', function(data) {
+    	$('#weather-status-main').text(data.weather[0].main);
+    	$('#weather-status-extra').text(data.weather[0].description);
+    	$('#weather-status-temp').text(Math.round(data.main.temp - 273) + "ºC");
+  		$('#show-city').text(city);
+		});
+	};
 
 $(document).ready(function() { // standard input
   var thermostat = new Thermostat(); // new instance
-	loadTemperature();
+	loadData();
 
   $('#temperature-up').on('click', function() { // event listener
     thermostat.increaseTemperature(); // updates the model
@@ -29,14 +36,14 @@ $(document).ready(function() { // standard input
   })
 
 	$('#save').click(function() {
-		console.log($('#current-city').val());
 		$.post('http://localhost:9292/temperature/' + thermostat.temperature.toString() + '/' + $('#current-city').val());
 	});
 
-	function loadTemperature() {
+	function loadData() {
 		$.get('http://localhost:9292/temperature', function(data) {
 			thermostat.setTemperature(parseInt(data.temperature));
 			$('#temperature').text(thermostat.temperature);
+			updateWeather(data.city);
 		});	
 	};
 
